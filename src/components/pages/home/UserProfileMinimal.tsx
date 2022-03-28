@@ -1,6 +1,8 @@
-import { User } from "../interface";
+import { useRouter } from "next/router";
+import { User } from "../../../interface";
 
 export default function UserProfileMinimal({ userData }: { userData: User }) {
+  const router = useRouter();
   return (
     <div
       style={{
@@ -12,6 +14,7 @@ export default function UserProfileMinimal({ userData }: { userData: User }) {
         borderRadius: 16,
         padding: 16,
       }}
+      onClick={() => router.push("/home")}
     >
       <p>{userData.name}</p>
 
