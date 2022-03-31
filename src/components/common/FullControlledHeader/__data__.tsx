@@ -1,30 +1,226 @@
 export const menuItems = [
   {
     title: "Buy",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Homes for Sale",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Homes Values",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center","First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
   {
     title: "Sell",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Home Selling",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Home Selling Tips",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
   {
     title: "Rent",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Homes for Sale",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Homes Values",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
   {
     title: "Mortgage",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Homes for Sale",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Homes Values",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
   {
     title: "Find Realtors",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Homes for Sale",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Homes Values",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
   {
     title: "My Home",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Homes for Sale",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Homes Values",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
   {
     title: "News and Insights",
-    subTitles: ["Homes for sale", "New Home Construction"],
+    subTitles: [
+      {
+        name: "Homes for Sale",
+        items: [
+          "Homes For Sale",
+          "New Home Construction",
+          "Recently Sold Homes",
+          "Foreclosure Homes",
+        ],
+      },
+      {
+        name: "Homes Values",
+        items: [
+          "Housing Market",
+          "Property Records",
+          "Home Buying Tips",
+          "Home Selling Tips",
+        ],
+      },
+      {
+        name: "Home Buying Tips",
+        items: [
+          "Home Buying Checklist",
+          "My First Home",
+          "First-Time Home Buyer Resource Center",
+          "Success Stories",
+        ],
+      },
+    ],
   },
 ];

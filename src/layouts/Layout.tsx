@@ -1,13 +1,15 @@
 import React, { ReactNode } from "react";
+import FullControlledFooter from "../components/common/FullControlledFooter";
 import FullControlledHeader from "../components/common/FullControlledHeader";
 
-function HeaderLayout(props: { children: ReactNode }) {
+function Layout(props: { children: ReactNode }) {
   return (
     <div>
       <FullControlledHeader />
       <div>{props.children}</div>
+      <FullControlledFooter />
     </div>
   );
 }
 
-export default HeaderLayout;
+export default Layout;

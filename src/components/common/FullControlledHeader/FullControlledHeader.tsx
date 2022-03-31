@@ -8,13 +8,13 @@ import {
   Button,
   useTheme,
   Container,
-} from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+} from "@mui/material"; 
 import NextLink from "next/link";
-import { ReactNode, useState } from "react";
+import {  useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { menuItems } from "./__data__";
-import { Box, BoxProps } from "@mui/system";
+import { Box } from "@mui/system";
+import AppbarMenuItem from "../../../globals/AppbarMenuItem";
 
 const useStyle = makeStyles({
   brand: {
@@ -39,37 +39,6 @@ const useStyle = makeStyles({
   },
 });
 
-function AppbarMenuItem({
-  text,
-  isActive,
-  style,
-  ...props
-}: {
-  text: ReactNode | string;
-  isActive: boolean;
-} & BoxProps) {
-  const theme = useTheme();
-
-  return (
-    <Link href="#">
-      <Box
-        style={{
-          padding: "14px 6px",
-          borderBottom: `4px solid ${
-            isActive ? theme.palette.primary.main : "transparent"
-          }`,
-          height: 64,
-          display: "flex",
-          alignItems: "center",
-          ...style,
-        }}
-        {...props}
-      >
-        {typeof text === "string" ? <Typography>{text}</Typography> : text}
-      </Box>
-    </Link>
-  );
-}
 
 export default function FullControlledHeader() {
   const theme = useTheme();
@@ -80,10 +49,9 @@ export default function FullControlledHeader() {
   >(null);
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" >
       <Toolbar
         style={{
-          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
@@ -182,19 +150,51 @@ export default function FullControlledHeader() {
         </Box>
       </Toolbar>
 
-      {currentMouseEnterTabIndex !== null && (
-        <Box
-          position="fixed"
-          style={{
-            background: "red",
-            height: 200,
-            width: "100%",
-            top: 65,
-            left: 0,
-            right: 0,
-          }}
-        ></Box>
-      )}
+      {currentMouseEnterTabIndex !== null &&
+        typeof currentMouseEnterTabIndex === "number" && (
+          <Box
+            position="fixed"
+            style={{
+              background: "white",
+              height: 240,
+              width: "100%",
+              top: 65,
+              left: 0,
+              right: 0,
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+            onMouseEnter={() => {
+              setcurrentMouseEnterTabIndex(currentMouseEnterTabIndex);
+            }}
+            onMouseLeave={() => {
+              setcurrentMouseEnterTabIndex(null);
+            }}
+          >
+            {menuItems[currentMouseEnterTabIndex].subTitles.map(
+              (item, index) => (
+                <Box key={index}>
+                  <Typography
+                    style={{
+                      marginBottom: 20,
+                      marginTop: 30,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {item.name}
+                  </Typography>
+                  {item.items.map((x, jIndex) => (
+                    <div key={jIndex}>
+                      <Link href="#">
+                        <Typography>{x}</Typography>
+                      </Link>
+                    </div>
+                  ))}
+                </Box>
+              )
+            )}
+          </Box>
+        )}
     </Container>
   );
 }
