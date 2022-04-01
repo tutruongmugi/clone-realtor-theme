@@ -1,33 +1,48 @@
 import React from "react";
-import { Box, IconButton, useTheme, BoxProps } from "@mui/material";
+import { Box, IconButton, useTheme, BoxProps, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 export default function SearchInput({ style, ...props }: {} & BoxProps) {
   const theme = useTheme();
   return (
-    <Box style={{ marginTop: 20,   position: "relative", ...style }} {...props}>
-      <ReactSearchAutocomplete
-        showIcon={false}
-        styling={{
-          clearIconMargin: "3px 60px 0 0",
-          height: "64px",
-          fontSize: "32px",
-          iconColor: "#000",
-          borderRadius: "48px",
+    <Box style={{ marginTop: 20, position: "relative", ...style }} {...props}>
+      <TextField
+        fullWidth
+        style={{ background: "white", borderRadius: 99 }}
+        inputProps={{
+          style: {
+            padding: 20,
+            fontSize: "1.25rem",
+          },
+        }}
+        placeholder="Address, School, City, Zip or Neighborhood"
+        InputProps={{
+          sx: {
+            // Marterial UI system
+            paddingRight: "8px",
+            "& fieldset": {
+              borderRadius: 99,
+            },
+            "&.Mui-focused fieldset": {
+              borderWidth: "0px !important",
+            },
+          },
+          endAdornment: (
+            <IconButton
+              sx={{
+                padding: "16px",
+                backgroundColor: "primary.main",
+                "&:hover": {
+                  backgroundColor: "primary.dark",
+                },
+              }}
+            >
+              <SearchIcon style={{ color: "white" }} />
+            </IconButton>
+          ),
         }}
       />
-      <IconButton
-        style={{
-          position: "absolute",
-          right: "8px",
-          top: "12px",
-          backgroundColor: theme.palette.primary.main,
-        }}
-        size="large"
-      >
-        <SearchIcon></SearchIcon>
-      </IconButton>
     </Box>
   );
 }

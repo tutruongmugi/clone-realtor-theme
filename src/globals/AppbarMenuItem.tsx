@@ -1,15 +1,24 @@
 import React, { ReactNode } from "react";
 import NextLink from "next/link";
-import { Box, BoxProps, Typography, useTheme, Link } from "@mui/material";
+import {
+  Box,
+  BoxProps,
+  Typography,
+  useTheme,
+  Link,
+  TypographyProps,
+} from "@mui/material";
 
 export default function AppbarMenuItem({
   text,
   isActive,
   style,
+  textProps,
   ...props
 }: {
   text: ReactNode | string;
   isActive: boolean;
+  textProps?: TypographyProps;
 } & BoxProps) {
   const theme = useTheme();
 
@@ -29,7 +38,13 @@ export default function AppbarMenuItem({
           }}
           {...props}
         >
-          {typeof text === "string" ? <Typography>{text}</Typography> : text}
+          {typeof text === "string" ? (
+            <Typography noWrap {...textProps}>
+              {text}
+            </Typography>
+          ) : (
+            text
+          )}
         </Box>
       </Link>
     </NextLink>

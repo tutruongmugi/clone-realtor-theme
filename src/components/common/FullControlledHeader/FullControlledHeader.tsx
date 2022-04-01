@@ -6,50 +6,23 @@ import {
   Typography,
   Link,
   Button,
-  useTheme,
   Container,
-} from "@mui/material"; 
+} from "@mui/material";
 import NextLink from "next/link";
-import {  useState } from "react";
-import { makeStyles } from "@mui/styles";
+import { useState } from "react";
 import { menuItems } from "./__data__";
 import { Box } from "@mui/system";
 import AppbarMenuItem from "../../../globals/AppbarMenuItem";
-
-const useStyle = makeStyles({
-  brand: {
-    color: "#000",
-    fontWeight: "bold",
-    fontSize: "1.5rem",
-  },
-  buttonHeader: {
-    marginRight: 20,
-    border: "1px solid",
-    "&:hover": { boderBottom: "3px solid transparent" },
-  },
-  grow: {
-    color: "#333",
-    fontSize: "14px",
-  },
-  menuItem: {
-    color: "#333",
-    fontSize: "14px",
-    marginRight: "16px",
-    "&:hover": { boderBottom: "3px solid transparent" },
-  },
-});
-
+import { MenuOutlined } from "@mui/icons-material";
 
 export default function FullControlledHeader() {
-  const theme = useTheme();
-
   const [currentActiveTabIndex, setcurrentActiveTabIndex] = useState(0);
   const [currentMouseEnterTabIndex, setcurrentMouseEnterTabIndex] = useState<
     number | null | "login" | "signup"
   >(null);
 
   return (
-    <Container maxWidth="xl" >
+    <Container maxWidth="xl">
       <Toolbar
         style={{
           top: 0,
@@ -59,8 +32,7 @@ export default function FullControlledHeader() {
           justifyContent: "space-between",
           alignItems: "center",
           background: "white",
-          padding: "0 12px",
-          borderBottom: `1px solid ${theme.palette.text.secondary}`,
+          padding: 0,
         }}
       >
         <NextLink href="/" passHref>
@@ -122,32 +94,40 @@ export default function FullControlledHeader() {
           </Box>
         </Hidden>
 
-        <Box display="flex" alignItems="center">
-          <AppbarMenuItem
-            text="Login"
-            isActive={currentMouseEnterTabIndex === "login"}
-            onMouseEnter={() => {
-              setcurrentMouseEnterTabIndex("login");
-            }}
-            onMouseLeave={() => {
-              setcurrentMouseEnterTabIndex(null);
-            }}
-          />
-          <AppbarMenuItem
-            text={
-              <Button variant="contained" color="primary">
-                Sign up
-              </Button>
-            }
-            isActive={currentMouseEnterTabIndex === "signup"}
-            onMouseEnter={() => {
-              setcurrentMouseEnterTabIndex("signup");
-            }}
-            onMouseLeave={() => {
-              setcurrentMouseEnterTabIndex(null);
-            }}
-          />
-        </Box>
+        <Hidden smDown>
+          <Box display="flex" alignItems="center">
+            <AppbarMenuItem
+              text="Login"
+              isActive={currentMouseEnterTabIndex === "login"}
+              onMouseEnter={() => {
+                setcurrentMouseEnterTabIndex("login");
+              }}
+              onMouseLeave={() => {
+                setcurrentMouseEnterTabIndex(null);
+              }}
+            />
+            <AppbarMenuItem
+              text={
+                <Button variant="contained" color="primary">
+                  Sign up
+                </Button>
+              }
+              isActive={currentMouseEnterTabIndex === "signup"}
+              onMouseEnter={() => {
+                setcurrentMouseEnterTabIndex("signup");
+              }}
+              onMouseLeave={() => {
+                setcurrentMouseEnterTabIndex(null);
+              }}
+            />
+          </Box>
+        </Hidden>
+
+        <Hidden smUp>
+          <IconButton>
+            <MenuOutlined />
+          </IconButton>
+        </Hidden>
       </Toolbar>
 
       {currentMouseEnterTabIndex !== null &&

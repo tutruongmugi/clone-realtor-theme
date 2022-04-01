@@ -1,4 +1,4 @@
-import { Box, Typography, Link, Grid } from "@mui/material";
+import { Box, Typography, Link, Grid, Hidden } from "@mui/material";
 import React from "react";
 import NextLink from "next/link";
 import ListHomeItem from "./listHomeItem/ListHomeItem";
@@ -23,10 +23,26 @@ export default function ListHome({
           </Typography>
         </Link>
       </NextLink>
-      <Grid container spacing={0.4} style={{ marginTop: 10 }}>
+      <Grid container columnSpacing={0.4} style={{ marginTop: 10 }}>
         {homeData.map((home, index) => (
-          <Grid item md={3} key={index}>
-            <ListHomeItem homeItem={home} style={{minWidth:300}} />
+          <Grid
+            sx={{
+              display: {
+                // An item thu 4 tro di neu man hinh < lg
+                lg: index >= 4 ? "none" : "block",
+                // An item thu 3 tro di neu man hinh < md
+                md: index >= 3 ? "none" : "block",
+                // show toan bo
+                sm: "block",
+              },
+            }}
+            key={index}
+            item
+            xs={12}
+            md={4}
+            lg={3}
+          >
+            <ListHomeItem homeItem={home} />
           </Grid>
         ))}
       </Grid>
