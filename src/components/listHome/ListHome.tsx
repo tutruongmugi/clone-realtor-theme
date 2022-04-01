@@ -26,7 +26,7 @@ export default function ListHome({
       <Grid container spacing={0.4} style={{ marginTop: 10 }}>
         {homeData.map((home, index) => (
           <Grid item md={3} key={index}>
-            <ListHomeItem homeItem={home} />
+            <ListHomeItem homeItem={home} style={{minWidth:300}} />
           </Grid>
         ))}
       </Grid>

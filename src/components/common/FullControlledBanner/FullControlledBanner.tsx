@@ -1,11 +1,13 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import Image from "next/image";
 import { menuRealEstateForSaleItems } from "./__data__";
 import AppbarMenuItem from "../../../globals/AppbarMenuItem";
-import SearchIcon from "@mui/icons-material/Search";
+import SearchInput from "../../../globals/searchInput";
 
 export default function FullControlledBanner() {
+  
+
   const [currentActiveTabIndex, setCurrentActiveTabIndex] = useState(0);
   const [currentMouseEnterTabIndex, setCurrentMouseEnterTabIndex] = useState<
     number | null
@@ -73,6 +75,7 @@ export default function FullControlledBanner() {
             </div>
           ))}
         </div>
+        <SearchInput />
       </Box>
     </div>
   );
