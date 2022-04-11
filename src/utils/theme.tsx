@@ -7,7 +7,7 @@ export const theme = createTheme({
       dark: "rgb(169, 45, 45)",
     },
     secondary: {
-      main: "#D92228",
+      main: "#3377CC",
     },
   },
   spacing: 42,
