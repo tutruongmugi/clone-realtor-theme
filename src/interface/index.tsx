@@ -21,3 +21,8 @@ export interface Article {
   image: string;
   titleAction: string;
 }
+
+export interface Location {
+  name: string;
+  price: number;
+}

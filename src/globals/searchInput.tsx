@@ -2,9 +2,15 @@ import React from "react";
 import { Box, IconButton, useTheme, BoxProps, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { useRouter } from "next/router";
 
 export default function SearchInput({ style, ...props }: {} & BoxProps) {
   const theme = useTheme();
+  const router = useRouter();
+
+  const handleSearch = () => {
+    router.push("/realestateandhomes-search/query");
+  };
   return (
     <Box style={{ marginTop: 20, position: "relative", ...style }} {...props}>
       <TextField
@@ -37,6 +43,7 @@ export default function SearchInput({ style, ...props }: {} & BoxProps) {
                   backgroundColor: "primary.dark",
                 },
               }}
+              onClick={handleSearch}
             >
               <SearchIcon style={{ color: "white" }} />
             </IconButton>

@@ -9,18 +9,24 @@ export default function CoverDataStory() {
         display: "block",
         position: "relative",
         marginTop: 80,
-        backgroundColor: "rgb(125, 141, 162)",
-        background: "#b3d4fc",
         justifyContent: "center",
+        backgroundImage: `url(${"/images/rs-cover-data-story.jpg"})`,
+        backgroundRepeat:"no-repeat",
+        backgroundPosition:'center',
+        width: "100%",
+        height: 620, 
+        // background:'rgb(51, 51, 51)',
+        // backgroundColor:'#000',
+        // opacity:0.5
       }}
     >
-      <Image
+      {/* <Image
         src="/images/rs-cover-data-story.jpg"
         alt="Cover Data Story"
         layout="responsive"
         width={700}
         height={225}
-      ></Image>
+      ></Image> */}
       <Box
         style={{
           position: "absolute",
