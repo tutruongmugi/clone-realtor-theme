@@ -55,6 +55,9 @@ export default function FormContactInformation() {
                 }
                 InputProps={{
                   startAdornment: <PersonOutlineOutlinedIcon />,
+                  sx: {
+                    backgroundColor: "white",
+                  },
                 }}
                 {...field}
               ></TextField>
@@ -87,6 +90,9 @@ export default function FormContactInformation() {
                 }
                 InputProps={{
                   startAdornment: <EmailIcon />,
+                  sx: {
+                    backgroundColor: "white",
+                  },
                 }}
                 {...field}
               ></TextField>
@@ -120,6 +126,9 @@ export default function FormContactInformation() {
                 }
                 InputProps={{
                   startAdornment: <LocalPhoneIcon />,
+                  sx: {
+                    backgroundColor: "white",
+                  },
                 }}
                 {...field}
               ></TextField>
@@ -127,10 +136,15 @@ export default function FormContactInformation() {
           ></Controller>
         </ListItem>
         <ListItem>
-          <TextField fullWidth variant="outlined" id="message"></TextField>
+          <TextField
+            sx={{ backgroundColor: "white" }}
+            fullWidth
+            variant="outlined"
+            id="message"
+          ></TextField>
         </ListItem>
         <FormControlLabel
-          control={<Checkbox size="small" />}
+          control={<Checkbox size="small"  />}
           label="Get pre-approved by a lender."
         />
         <ListItem>

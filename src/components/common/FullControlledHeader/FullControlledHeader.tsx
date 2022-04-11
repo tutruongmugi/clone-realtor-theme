@@ -9,11 +9,12 @@ import {
   Container,
 } from "@mui/material";
 import NextLink from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { menuItems } from "./__data__";
 import { Box } from "@mui/system";
 import AppbarMenuItem from "../../../globals/AppbarMenuItem";
 import { MenuOutlined } from "@mui/icons-material";
+import Login from "../dialog/login";
 
 export default function FullControlledHeader() {
   const [currentActiveTabIndex, setcurrentActiveTabIndex] = useState(0);
@@ -21,8 +22,18 @@ export default function FullControlledHeader() {
     number | null | "login" | "signup"
   >(null);
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Container maxWidth="xl">
+    <Container>
       <Toolbar
         style={{
           top: 0,
@@ -105,6 +116,9 @@ export default function FullControlledHeader() {
               onMouseLeave={() => {
                 setcurrentMouseEnterTabIndex(null);
               }}
+              onClick={()=>{
+                handleClickOpen()
+              }}
             />
             <AppbarMenuItem
               text={
@@ -120,6 +134,7 @@ export default function FullControlledHeader() {
                 setcurrentMouseEnterTabIndex(null);
               }}
             />
+            <Login open={open} handleClose={handleClose} />
           </Box>
         </Hidden>
 
