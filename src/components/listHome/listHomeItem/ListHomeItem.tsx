@@ -36,14 +36,14 @@ export default function ListHomeItem({
   const [currentMouseEnterHeart, setCurrentMouseEnterHeart] = useState(false);
   return (
     <Box style={{ ...style }} {...props}>
-      <Card>
-        <NextLink href="#" passHref>
-          <CardActionArea>
+      <Card style={{ width: "100%" }}>
+        <NextLink href="#" passHref >
+          <CardActionArea  >
             <CardMedia
               component="img"
               image={homeItem.image}
               title="home in NY"
-              style={{ height: 200 }}
+              height="200" 
             ></CardMedia>
             <Box
               style={{
@@ -81,40 +81,40 @@ export default function ListHomeItem({
               <Typography
                 style={{ fontWeight: "bold" }}
               >{`$${homeItem.price}`}</Typography>
-              <Grid container>
-                <Grid item md={3} style={{ display: "flex" }}>
+              <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", marginRight: 10 }}>
                   <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
                     {" "}
                     {homeItem.bed}{" "}
                   </Typography>
                   <Typography>bed</Typography>
-                </Grid>
-                <Grid item md={3} style={{ display: "flex" }}>
+                </div>
+                <div style={{ display: "flex", marginRight: 10 }}>
                   <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
                     {" "}
                     {homeItem.bath}{" "}
                   </Typography>
                   <Typography>bath</Typography>
-                </Grid>
-                <Grid item md={3} style={{ display: "flex" }}>
+                </div>
+                <div style={{ display: "flex", marginRight: 10 }}>
                   <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
                     {" "}
                     {homeItem.sqft}{" "}
                   </Typography>
                   <Typography>sqft</Typography>
-                </Grid>
+                </div>
                 {homeItem.acreLot !== 0 && (
-                  <Grid item md={3} style={{ display: "flex" }}>
+                  <div style={{ display: "flex", marginRight: 10 }}>
                     <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
                       {" "}
                       {homeItem.acreLot}{" "}
                     </Typography>
-                    <Typography>acre lot</Typography>
-                  </Grid>
+                    <Typography noWrap>acre lot</Typography>
+                  </div>
                 )}
-              </Grid>
+              </div>
 
-              <Typography>{homeItem.address}</Typography>
+              <Typography noWrap>{homeItem.address}</Typography>
             </CardContent>
           </CardActionArea>
         </NextLink>
