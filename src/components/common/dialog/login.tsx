@@ -6,10 +6,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Controller, useForm } from "react-hook-form";
-import { Button, List, ListItem, Typography, Link } from "@mui/material";
+import { Button, List, ListItem, Typography, Link, Icon } from "@mui/material";
 import GoogleLogin from "react-google-login";
 import GoogleButton from "react-google-button";
 import NextLink from "next/link";
+import useStyles from "../../../utils/styles";
 
 export default function Login({
   open,
@@ -25,11 +26,9 @@ export default function Login({
     control,
     formState: { errors },
   } = useForm();
+  const classes = useStyles();
 
-  const submitHandler =  () => {
-
-
-  };
+  const submitHandler = () => {};
 
   const responseGoogle = (response) => {
     console.log(response);
@@ -78,7 +77,33 @@ export default function Login({
               ></Controller>
             </ListItem>
             <ListItem>
-              <Button variant="contained" color="primary" fullWidth>
+              <div
+                style={{
+                  textAlign: "center",
+                  width: "100%",
+                  borderBottom: "1px solid black",
+                  height: 15,
+                }}
+              >
+                <span
+                  style={{
+                    backgroundColor: "#fff",
+                    padding: "4px 10px 0px",
+                    margin: 0,
+                  }}
+                >
+                  or
+                </span>
+              </div>
+            </ListItem>
+
+            <ListItem>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                type="submit"
+              >
                 Continue
               </Button>
             </ListItem>
@@ -86,18 +111,59 @@ export default function Login({
         </form>
         <List>
           <ListItem>
-            <GoogleLogin
-              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-              render={(renderProps) => (
-                <GoogleButton onClick={renderProps.onClick}>
-                  Sign in with Google
-                </GoogleButton>
-              )}
-            />
+            <Button
+              variant="outlined"
+              fullWidth
+              startIcon={
+                <Icon>
+                  <img style={{ height: "100%" }} src="/icons/google.svg" />
+                </Icon>
+              }
+              className={classes.googleButton}
+            >
+              Continue with Google
+            </Button>
+          </ListItem>
+          <ListItem>
+            <Button
+              variant="contained"
+              fullWidth
+              startIcon={
+                <Icon>
+                  <img style={{ height: "100%" }} src="/icons/facebook.svg" />
+                </Icon>
+              }
+              className={classes.facebookButton}
+            >
+              Continue with Facebook
+            </Button>
+          </ListItem>
+          <ListItem>
+            <Button
+              variant="contained"
+              fullWidth
+              startIcon={
+                <Icon>
+                  <img style={{ height: "100%" }} src="/icons/apple.svg" />
+                </Icon>
+              }
+              className={classes.appleButton}
+            >
+              Continue with Apple
+            </Button>
+          </ListItem>
+          <ListItem>
+            <Button
+              variant="contained"
+              fullWidth
+              startIcon={
+                <Icon>
+                  <img style={{ height: "100%" }} src="/icons/mail.png" />
+                </Icon>
+              }
+            >
+              Email me a Link
+            </Button>
           </ListItem>
         </List>
 
