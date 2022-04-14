@@ -25,7 +25,7 @@ export default function BuyInstruction() {
   } = useForm();
 
   const [packing, setPacking] = useState("");
-  const [sizeOfMove, setSizeOfMove] = useState("");
+  const [sizeOfMove, setSizeOfMove] = useState("2.5");
 
   const handleChangePacking = (e) => {
     setPacking(e.target.value);
@@ -34,14 +34,16 @@ export default function BuyInstruction() {
     setSizeOfMove(e.target.value);
   };
 
-  const submitHandler = () => {};
+  const submitHandler = () => {
+    console.log("errors:", errors);
+  };
 
   return (
     <div style={{ marginTop: 20 }}>
       <Typography style={{ fontSize: 20, fontWeight: "bold" }}>
         How to buy a home in San Juan, PR
       </Typography>
-      <Grid container spacing={0.4}  >
+      <Grid container spacing={0.4}>
         <Hidden mdDown>
           <Grid item md={4}>
             <div style={{ border: "1px solid #dcdcdc", padding: 20 }}>
@@ -79,7 +81,6 @@ export default function BuyInstruction() {
                   "https://videos-fms.jwpsrv.com/0_62542a4c_0x27a5f19b960f6ec70d93cb7a631b4c9e7cda3903/content/conversions/Obf13ESt/videos/ckJjvmOE-21944002.mp4"
                 }
                 controls
-                playing
                 width="100%"
                 height="100%"
                 config={{
@@ -175,7 +176,7 @@ export default function BuyInstruction() {
                     Move from
                   </Typography>
                   <Controller
-                    name="zipCode"
+                    name="zipCodeFrom"
                     control={control}
                     defaultValue=""
                     rules={{
@@ -185,14 +186,15 @@ export default function BuyInstruction() {
                     render={({ field }) => (
                       <TextField
                         placeholder="ZIP code"
-                        id="zipCode"
+                        id="zipCodeFrom"
                         inputProps={{ maxLength: 5 }}
-                        error={Boolean(errors.zipCode)}
+                        error={Boolean(errors.zipCodeFrom)}
                         helperText={
-                          errors.zipCode
+                          errors.zipCodeFrom
                             ? "Please enter your current five-digit ZIP code"
                             : ""
                         }
+                    
                         {...field}
                       />
                     )}
@@ -202,15 +204,39 @@ export default function BuyInstruction() {
                   <Typography style={{ marginTop: 20, fontWeight: "bold" }}>
                     Move to
                   </Typography>
-                  <TextField placeholder="ZIP code" />
+                  <Controller
+                    name="zipCodeTo"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: true,
+                      minLength: 5,
+                    }}
+                    render={({ field }) => (
+                      <TextField
+                        placeholder="ZIP code"
+                        id="zipCodeTo"
+                        inputProps={{ maxLength: 5 }}
+                        error={Boolean(errors.zipCodeTo)}
+                        helperText={
+                          errors.zipCodeTo
+                            ? "Please enter your current five-digit ZIP code"
+                            : ""
+                        }
+                        {...field}
+                      />
+                    )}
+                  ></Controller>
                 </Grid>
                 <Grid item md={6}>
-                  <Typography
-                    style={{ fontSize: 16, marginTop: 20, fontWeight: "bold" }}
-                  >
+                  <Typography style={{ fontSize: 16, fontWeight: "bold" }}>
                     Size of move
                   </Typography>
-                  <FormControl style={{ marginTop: 20 }} sx={{ minWidth: 120 }}>
+                  <FormControl
+                    style={{ marginTop: 20 }}
+                    sx={{ minWidth: 120 }}
+                    
+                  >
                     <Select
                       value={sizeOfMove}
                       onChange={handleChangeSizeOfMove}
@@ -230,9 +256,7 @@ export default function BuyInstruction() {
                   </FormControl>
                 </Grid>
                 <Grid item md={6}>
-                  <Typography
-                    style={{ fontSize: 16, marginTop: 20, fontWeight: "bold" }}
-                  >
+                  <Typography style={{ fontSize: 16, fontWeight: "bold" }}>
                     Packing
                   </Typography>
                   <FormControl style={{ marginTop: 20 }} sx={{ minWidth: 120 }}>
@@ -257,7 +281,8 @@ export default function BuyInstruction() {
               <Button
                 variant="contained"
                 color="primary"
-                style={{ marginTop: 20, marginBottom: 20 }}
+                style={{ marginTop: 20, marginBottom: 40 }}
+                type="submit"
               >
                 Get Estimates
               </Button>

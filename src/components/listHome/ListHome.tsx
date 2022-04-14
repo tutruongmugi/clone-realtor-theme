@@ -5,6 +5,7 @@ import ListHomeItem from "./listHomeItem/ListHomeItem";
 import { Home } from "../../interface";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import useStyles from "../../utils/styles";
 
 const responsive = {
   desktop: {
@@ -31,6 +32,9 @@ export default function ListHome({
   homeData: Home[];
   homeTitle: String;
 }) {
+
+  const classes=useStyles();
+
   return (
     <Container style={{ marginTop: 80 }}>
       <Typography style={{ fontWeight: "bold", fontSize: 24 }}>
@@ -68,7 +72,7 @@ export default function ListHome({
         </Grid>
       </Hidden>
       <Hidden mdUp>
-        <Carousel responsive={responsive} additionalTransfrom={-10}  >
+        <Carousel responsive={responsive} additionalTransfrom={-10} itemClass={classes.carouselItemClass} >
           {homeData.map((home, index) => (
             <ListHomeItem homeItem={home} key={index} style={{padding:10,width:320}} />
           ))}

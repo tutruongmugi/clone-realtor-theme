@@ -8,11 +8,13 @@ import {
   Typography,
   BoxProps,
   useTheme,
+  Checkbox,
 } from "@mui/material";
 import React, { useState } from "react";
 import NextLink from "next/link";
 import { Home } from "../../../interface";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
 // function HomeItemHeart({
 //   isActive,
@@ -33,17 +35,17 @@ export default function ListHomeItem({
 }: { homeItem: Home } & BoxProps) {
   const theme = useTheme();
 
-  const [currentMouseEnterHeart, setCurrentMouseEnterHeart] = useState(false);
+
   return (
     <Box style={{ ...style }} {...props}>
       <Card style={{ width: "100%" }}>
-        <NextLink href="#" passHref >
-          <CardActionArea  >
+        <NextLink href={`/realestateandhomesdetail/${homeItem.name}`} passHref>
+          <CardActionArea style={{ position: "relative" }}>
             <CardMedia
               component="img"
               image={homeItem.image}
               title="home in NY"
-              height="200" 
+              height="200"
             ></CardMedia>
             <Box
               style={{
@@ -58,24 +60,18 @@ export default function ListHomeItem({
             >
               <Typography>{homeItem.updatedAt}</Typography>
             </Box>
-            <Box
+            <div
               style={{
-                position: "absolute",
-                right: 16,
-                top: "48%",
-                color: currentMouseEnterHeart
-                  ? theme.palette.primary.main
-                  : "rgba(0, 0, 0, 0.4)",
-              }}
-              onMouseEnter={() => {
-                setCurrentMouseEnterHeart(true);
-              }}
-              onMouseLeave={() => {
-                setCurrentMouseEnterHeart(false);
+                display: "flex",
+                justifyContent: "flex-end",
+                position: "absolute", 
+                
               }}
             >
-              <FavoriteIcon fontSize="large" />
-            </Box>
+              
+              <Checkbox  icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+            </div>
+
             <CardContent>
               <Typography>{homeItem.name}</Typography>
               <Typography

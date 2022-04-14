@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import { Home } from "../../interface";
 import ListHomeItem from "./listHomeItem/ListHomeItem";
 import BungalowIcon from "@mui/icons-material/Bungalow";
+import useStyles from "../../utils/styles";
 
 const responsive = {
   desktop: {
@@ -31,19 +32,21 @@ export default function ListHomeCarousel({
   homeData: Home[];
   homeTitle: String;
 }) {
+  const classes=useStyles()
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex",marginBottom:10 }}>
         <BungalowIcon />
         <Typography style={{ marginLeft: 10, fontSize: 18 }}>
           {homeTitle}
         </Typography>
       </div>
-      <Carousel ssr partialVisbile responsive={responsive}>
+      <Carousel  responsive={responsive}  itemClass={classes.carouselItemClass}>
         {homeData.map((home, index) => (
           <ListHomeItem
             key={index}
             homeItem={home} 
+            style={{padding:10,width:250}}
           />
         ))}
       </Carousel>

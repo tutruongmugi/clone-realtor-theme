@@ -11,13 +11,12 @@ export default function CoverDataStory() {
         marginTop: 80,
         justifyContent: "center",
         backgroundImage: `url(${"/images/rs-cover-data-story.jpg"})`,
-        backgroundRepeat:"no-repeat",
-        backgroundPosition:'center',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
         width: "100%",
-        height: 620, 
-        // background:'rgb(51, 51, 51)',
+        height: 620,
         // backgroundColor:'#000',
-        // opacity:0.5
+        // opacity:1
       }}
     >
       {/* <Image
@@ -30,38 +29,48 @@ export default function CoverDataStory() {
       <Box
         style={{
           position: "absolute",
-          textAlign: "center",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%,-50%)",
+          // textAlign: "center",
+          // top: "50%",
+          // left: "50%",
+          // transform: "translate(-50%,-50%)",
+          background: "rgba(0, 0, 0, 0.5)",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Typography style={{ color: "#fff", fontWeight: "bold", fontSize: 56 }}>
-          Trends
-        </Typography>
-        <Typography
-          style={{
-            color: "#fff",
-            fontWeight: "bold",
-            fontSize: 20,
-            marginTop: 20,
-          }}
-        >
-          Here Are the 10 Towns in America Where You Can Still Buy an Affordable
-          (and Great) Vacation Home
-        </Typography>
-        <Button
-          variant="outlined"
-          style={{
-            borderRadius: 32,
-            padding: "8px 16px",
-            color: "white",
-            borderColor: "white",
-            marginTop: 20,
-          }}
-        >
-          Read More
-        </Button>
+        <div style={{ textAlign: "center" }}>
+          <Typography
+            style={{ color: "#fff", fontWeight: "bold", fontSize: 56 }}
+          >
+            Trends
+          </Typography>
+          <Typography
+            style={{
+              color: "#fff",
+              fontWeight: "bold",
+              fontSize: 20,
+              marginTop: 20,
+            }}
+          >
+            Here Are the 10 Towns in America Where You Can Still Buy an
+            Affordable (and Great) Vacation Home
+          </Typography>
+          <Button
+            variant="outlined"
+            style={{
+              borderRadius: 32,
+              padding: "8px 16px",
+              color: "white",
+              borderColor: "white",
+              marginTop: 20,
+            }}
+          >
+            Read More
+          </Button>
+        </div>
       </Box>
     </div>
   );
