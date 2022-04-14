@@ -40,5 +40,54 @@ export const theme = createTheme({
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& fieldset": {
+            border: "1px solid gray !important",
+          },
+          "&.Mui-focused fieldset": {
+            border: "2px inset rgb(118, 118, 118) !important",
+          },
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          color: "#757575",
+          fontSize: 14,
+          fontWeight: 400,
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          "&:checked": {
+            color: "#D92228",
+          },
+          "&:hover": {
+            color: "#D92228",
+          },
+        },
+      },
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: { 
+          "&:hover": {
+            backgroundColor: "#D92228",
+          },
+        },
+      },
+    },
+    MuiPagination: {
+      styleOverrides: {
+        root: {
+          color:'black'
+        },
+      },
+    },
   },
 });
