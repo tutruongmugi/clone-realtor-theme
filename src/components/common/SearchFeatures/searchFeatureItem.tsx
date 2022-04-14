@@ -1,8 +1,10 @@
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import useStyles from "../../../utils/styles";
 
 export default function SearchFeatureItem({ text }: { text: String }) {
+  const classes = useStyles();
   return (
     <div
       style={{
@@ -11,29 +13,40 @@ export default function SearchFeatureItem({ text }: { text: String }) {
         height: 90,
         borderRadius: 5,
         overflow: "hidden",
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        padding:'8px 6px',
-        cursor:'pointer', 
+        cursor: "pointer",
+        backgroundImage: `url(${"/images/rs-cover-data-story.jpg"})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize:'cover'
       }}
     >
-      <Image
+      <div
+        style={{
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "rgba(0, 0, 0, 0.5)",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <Typography
+          style={{
+            fontWeight: "bold",
+            color: "white",
+          }}
+        >
+          {text}
+        </Typography>
+      </div>
+      {/* <Image
         src="/images/rs1.jpg"
         alt="rs1"
         layout="fill"
         objectFit="cover"
         quality={100}
-      />
-      <Typography
-        style={{
-          fontWeight: "bold",
-          color: "white",
-          position: "absolute",
-        }}
-      >
-        {text}
-      </Typography>
+      /> */}
     </div>
   );
 }

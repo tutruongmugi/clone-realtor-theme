@@ -1,15 +1,55 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import Carousel from "react-multi-carousel";
 import SearchFeatureItem from "../../../common/SearchFeatures/searchFeatureItem";
+import "react-multi-carousel/lib/styles.css";
+import useStyles from "../../../../utils/styles";
 
-export default function PopularSeaches({text}:{text:String}) {
+const temp = [
+  "Rental Property",
+  "waterfront",
+  "Big Lot",
+  "Ocean View",
+  "Rental Property",
+  "waterfront",
+  "Big Lot",
+  "Ocean View",
+  "Rental Property",
+  "waterfront",
+  "Big Lot",
+  "Ocean View",
+];
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    paritialVisibilityGutter: 60,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+    paritialVisibilityGutter: 50,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    paritialVisibilityGutter: 30,
+  },
+};
+
+export default function PopularSeaches({ text }: { text: String }) {
+  const classes=useStyles()
   return (
-    <div style={{marginTop:30}}>
-      <Typography variant="h6" style={{ fontWeight: "bold",marginBottom:10 }}>
+    <div style={{ marginTop: 30 }}>
+      <Typography variant="h6" style={{ fontWeight: "bold", marginBottom: 10 }}>
         {text}
       </Typography>
-
-      <SearchFeatureItem text={"Rental Property"} />
+ 
+      <Carousel responsive={responsive} itemClass={classes.carouselItemClassPopulars} autoPlay={false}   >
+        {temp.map((item, index) => (
+          <SearchFeatureItem key={index} text={item} />
+        ))}
+      </Carousel>
     </div>
   );
 }

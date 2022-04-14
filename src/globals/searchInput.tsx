@@ -37,7 +37,7 @@ export default function SearchInput({ style, ...props }: {} & BoxProps) {
           endAdornment: (
             <IconButton
               sx={{
-                padding: "16px",
+                padding:'8px',
                 backgroundColor: "primary.main",
                 "&:hover": {
                   backgroundColor: "primary.dark",
