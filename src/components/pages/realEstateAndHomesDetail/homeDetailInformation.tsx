@@ -1,6 +1,13 @@
-import { List, ListItem, Link, Typography, Grid, Button } from "@mui/material";
+import {
+  List,
+  ListItem,
+  Link,
+  Typography,
+  Grid,
+  Button,
+  IconButton,
+} from "@mui/material";
 import React from "react";
-import SimpleImageSlider from "react-simple-image-slider";
 import NextLink from "next/link";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import BungalowIcon from "@mui/icons-material/Bungalow";
@@ -8,24 +15,57 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import GradingIcon from "@mui/icons-material/Grading";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import HandymanIcon from "@mui/icons-material/Handyman";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const images = [
-  { url: "images/ex-home-detail-1.jpg" },
-  { url: "images/ex-home-detail-2.jpg" },
-  { url: "images/ex-home-detail-3.jpg" },
-  { url: "images/ex-home-detail-4.jpg" },
+  "/images/ex-home-detail-1.jpg",
+  "/images/ex-home-detail-2.jpg",
+  "/images/ex-home-detail-3.jpg",
+  "/images/ex-home-detail-4.jpg",
 ];
+const properties = {
+  duration: 5000,
+  autoplay: false,
+  transitionDuration: 500, 
+  infinite: true,
+  indicators: false,
+  // nextArrow: (
+  //   <IconButton sx={{ color:'red',marginRight: "-60px",
+  //   width: 50,
+  //   height: 50,
+  //   position: "absolute",
+  //   top: "75%",
+  //   left: 25,}} >
+  //     <ArrowForwardIosIcon />
+  //   </IconButton>
+  // ),
+  // prevArrow: (
+  //   <IconButton>
+  //     <ArrowForwardIosIcon />
+  //   </IconButton>
+  // ),
+};
 
 export default function HomeDetailInformation() {
   return (
     <div>
-      <SimpleImageSlider
-        width="100%"
-        height={450}
-        images={images}
-        showBullets={true}
-        showNavs={true}
-      />
+      <Slide {...properties}>
+        {images.map((item, index) => (
+          <div className="each-slide" key={index}>
+            <div
+              style={{
+                height: 450,
+                width: "100%",
+                position: "relative",
+                backgroundImage: `url(${item})`,
+              }}
+            ></div>
+          </div>
+        ))}
+      </Slide>
       <Grid container>
         <Grid item md={8}>
           <List>

@@ -7,6 +7,9 @@ import CoverDataStory from "../src/components/pages/realEstateForSale/coverDataS
 import ListHomeArticle from "../src/components/listHomeArticle/ListHomeArticle";
 import AddOnInformation from "../src/components/pages/realEstateForSale/addOnInformation";
 import ListHome from "../src/components/listHome/ListHome";
+import { useEffect } from "react";
+import axios from "axios";
+
 
 
 const Home: NextPage = () => {
@@ -84,6 +87,11 @@ const Home: NextPage = () => {
       titleAction: "celebrity real estate",
     },
   ];
+
+  // useEffect(()=>{
+  //   axios.get('/home/')
+  // },[])
+  
   return (
     <div>
       <Head>

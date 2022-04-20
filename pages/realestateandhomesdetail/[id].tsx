@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Home } from "../../src/interface";
 import ListHomeCarousel from "../../src/components/listHome/ListHomecarousel";
 
+
 const homes: Home[] = [
   {
     name: "Single-Family-Home",

@@ -74,7 +74,7 @@ export default function ListHome({
       <Hidden mdUp>
         <Carousel responsive={responsive} additionalTransfrom={-10} itemClass={classes.carouselItemClass} >
           {homeData.map((home, index) => (
-            <ListHomeItem homeItem={home} key={index} style={{padding:10,width:320}} />
+            <ListHomeItem homeItem={home} key={index}   />
           ))}
         </Carousel>
       </Hidden>

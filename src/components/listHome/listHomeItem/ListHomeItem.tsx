@@ -35,18 +35,34 @@ export default function ListHomeItem({
 }: { homeItem: Home } & BoxProps) {
   const theme = useTheme();
 
-
   return (
     <Box style={{ ...style }} {...props}>
       <Card style={{ width: "100%" }}>
         <NextLink href={`/realestateandhomesdetail/${homeItem.name}`} passHref>
           <CardActionArea style={{ position: "relative" }}>
-            <CardMedia
-              component="img"
-              image={homeItem.image}
-              title="home in NY"
-              height="200"
-            ></CardMedia>
+            <div style={{ position: "relative" }}>
+              <CardMedia
+                component="img"
+                image={homeItem.image}
+                title="home in NY"
+                height="200"
+              ></CardMedia>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  position: "absolute",
+                  bottom: 16,
+                  right:16
+                }}
+              >
+                <Checkbox
+                  icon={<FavoriteBorder />}
+                  checkedIcon={<Favorite />}
+                />
+              </div>
+            </div>
+
             <Box
               style={{
                 backgroundColor: "#37c",
@@ -60,17 +76,6 @@ export default function ListHomeItem({
             >
               <Typography>{homeItem.updatedAt}</Typography>
             </Box>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                position: "absolute", 
-                
-              }}
-            >
-              
-              <Checkbox  icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
-            </div>
 
             <CardContent>
               <Typography>{homeItem.name}</Typography>
