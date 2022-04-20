@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   googleButton: {
     "& .MuiButton-startIcon": {
       marginLeft: -46,
-      marginRight: 36
+      marginRight: 36,
     },
     border: "1px solid rgb(148, 148, 148) ",
     color: "black",
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   facebookButton: {
     "& .MuiButton-startIcon": {
       marginLeft: -30,
-      marginRight: 36, 
+      marginRight: 36,
     },
     border: "1px solid rgb(148, 148, 148) ",
     color: "rgb(255, 255, 255)",
@@ -42,10 +42,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderColor: "rgb(21, 103, 208)",
     },
   },
-  appleButton: { 
+  appleButton: {
     "& .MuiButton-startIcon": {
       marginLeft: -50,
-      marginRight: 36
+      marginRight: 36,
     },
     border: "1px solid rgb(148, 148, 148) ",
     color: "rgb(255, 255, 255)",
@@ -55,13 +55,27 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderColor: "rgb(117, 117, 117)",
     },
   },
-  emailButton: { 
+  emailButton: {
     "& .MuiButton-startIcon": {
       marginLeft: -60,
-      marginRight: 50
+      marginRight: 50,
     },
-     
   },
+  grayText:{
+    fontSize:16,
+    lineHeight:1.6,
+    fontWeight: 300
+  },
+  titleText:{
+    fontSize:31,
+    fontWeight: 400
+  },
+  linkText:{
+    fontSize:16,
+    fontWeight: 400,
+    color:'#364BC4'
+  },
+
 }));
 
 export default useStyles;
