@@ -13,17 +13,22 @@ export default function AppbarMenuItem({
   text,
   isActive,
   style,
+  route,
   textProps,
   ...props
 }: {
   text: ReactNode | string;
   isActive: boolean;
+  route:string;
   textProps?: TypographyProps;
 } & BoxProps) {
   const theme = useTheme();
 
   return (
-    <NextLink href="/realestateforsale" passHref>
+    <NextLink
+      href={route}
+      passHref
+    >
       <Link>
         <Box
           style={{

@@ -9,14 +9,14 @@ import {
   Container,
 } from "@mui/material";
 import NextLink from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { menuItems } from "./__data__";
 import { Box } from "@mui/system";
 import AppbarMenuItem from "../../../globals/AppbarMenuItem";
 import { MenuOutlined } from "@mui/icons-material";
 import Login from "../dialog/login";
 
-export default function FullControlledHeader() {
+export default function FullControlledHeader({widthContainer} : {widthContainer: string}) {
   const [currentActiveTabIndex, setcurrentActiveTabIndex] = useState(0);
   const [currentMouseEnterTabIndex, setcurrentMouseEnterTabIndex] = useState<
     number | null | "login" | "signup"
@@ -31,9 +31,23 @@ export default function FullControlledHeader() {
   const handleClose = () => {
     setOpen(false);
   };
-
+ 
+  const [isTop, setIsTop] = useState(true);
+  useEffect(() => {
+    const setIsScrollOnTop = () => {
+      if (window?.scrollY > 40) {
+        setIsTop(false);
+      } else {
+        setIsTop(true);
+      }
+    };
+    window.addEventListener("scroll", setIsScrollOnTop);
+    return () => {
+      window.removeEventListener("scroll", setIsScrollOnTop);
+    };
+  }, []);
   return (
-    <Container>
+    <Container maxWidth={widthContainer} >
       <Toolbar
         style={{
           top: 0,
@@ -44,6 +58,7 @@ export default function FullControlledHeader() {
           alignItems: "center",
           background: "white",
           padding: 0,
+          borderBottom:'1px solid rgb(200, 200, 200)'
         }}
       >
         <NextLink href="/" passHref>
@@ -74,6 +89,7 @@ export default function FullControlledHeader() {
                   onClick={() => {
                     setcurrentActiveTabIndex(index);
                   }}
+                  route={"realestateforsale"}
                   onMouseEnter={() => {
                     setcurrentMouseEnterTabIndex(index);
                   }}
@@ -116,9 +132,10 @@ export default function FullControlledHeader() {
               onMouseLeave={() => {
                 setcurrentMouseEnterTabIndex(null);
               }}
-              onClick={()=>{
-                handleClickOpen()
-              }}
+              // onClick={() => {
+              //   handleClickOpen();
+              // }}
+              route={"login"}
             />
             <AppbarMenuItem
               text={
@@ -130,6 +147,7 @@ export default function FullControlledHeader() {
               onMouseEnter={() => {
                 setcurrentMouseEnterTabIndex("signup");
               }}
+              route={"register"}
               onMouseLeave={() => {
                 setcurrentMouseEnterTabIndex(null);
               }}
@@ -158,6 +176,7 @@ export default function FullControlledHeader() {
               right: 0,
               display: "flex",
               justifyContent: "space-around",
+              zIndex:1000
             }}
             onMouseEnter={() => {
               setcurrentMouseEnterTabIndex(currentMouseEnterTabIndex);
@@ -192,4 +211,7 @@ export default function FullControlledHeader() {
         )}
     </Container>
   );
+}
+function handleOnClickSignUp() {
+  throw new Error("Function not implemented.");
 }

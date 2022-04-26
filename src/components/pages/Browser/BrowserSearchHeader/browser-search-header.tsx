@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchFilterItem from "../../../../globals/SearchFilterItem";
@@ -38,6 +38,9 @@ const propertyTypeItems = [
 const radioBedRooms = ["Any", "1+", "2+", "3+", "4+", "5+"];
 
 export default function BrowserSearchHeader() {
+
+  const [inputValue, setInputValue] = useState("");
+
   const [currentActiveTabIndex, setcurrentActiveTabIndex] = useState(-1);
   const [currentActiveBedIndex, setCurrentActiveBedIndex] = useState(0);
   const [currentActiveBathIndex, setCurrentActiveBathIndex] = useState(0);
@@ -50,49 +53,68 @@ export default function BrowserSearchHeader() {
   const [bathRoomsFrom, setBathRoomsFrom] = useState(0);
   const [bathRoomsTo, setBathRoomsTo] = useState(0);
 
-  const handleChangeMinPrice = (e) => {
+  const handleChangeMinPrice = (e : any ) => {
     setMinPrice(e.target.value);
   };
-  const handleChangeMaxPrice = (e) => {
+  const handleChangeMaxPrice = (e : any ) => {
     setMaxPrice(e.target.value);
   };
 
-  const handleChangeBedRoomsFrom = (e) => {
+  const handleChangeBedRoomsFrom = (e : any ) => {
     setBedRoomsFrom(e.target.value);
   };
-  const handleChangeBedRoomsTo = (e) => {
+  const handleChangeBedRoomsTo = (e : any ) => {
     setBathRoomsTo(e.target.value);
   };
-  const handleChangeBathRoomsFrom = (e) => {
+  const handleChangeBathRoomsFrom = (e : any ) => {
     setBathRoomsFrom(e.target.value);
   };
-  const handleChangeBathRoomsTo = (e) => {
+  const handleChangeBathRoomsTo = (e : any ) => {
     setBathRoomsTo(e.target.value);
   };
+  const [isTop, setIsTop] = useState(true);
+  useEffect(() => {
+    const setIsScrollOnTop = () => {
+      if (window?.scrollY > 40) {
+        setIsTop(false);
+      } else {
+        setIsTop(true);
+      }
+    };
+    window.addEventListener("scroll", setIsScrollOnTop);
+    return () => {
+      window.removeEventListener("scroll", setIsScrollOnTop);
+    };
+  }, []);
 
   return (
     <div
       style={{
         display: "flex",
-        position: "fixed",
+        position:  "sticky",
+        top: 0,
         zIndex: 999,
-        boxShadow: "0px 1px 3px 0px rgb(0 0 0 / 20%)",
+        boxShadow: isTop ? "" : "0px 1px 3px 0px rgb(0 0 0 / 20%)",
         width: "100%",
-        padding: 10,
+        padding: "10px 0px 10px 0px",
         background: "white",
       }}
     >
       <div style={{ display: "flex" }}>
         <TextField
-          fullWidth
+          style={{width: 200}}
           size="small"
           placeholder="Address, City, Zip, Neighboorhood, School"
+          value={inputValue}
+          onChange={(e)=>{
+            setInputValue(e.target.value)
+          }}
           InputProps={{
             sx: {
               borderRadius: "4px 0px 0px 4px",
               paddingRight: 0,
             },
-            endAdornment: (
+            endAdornment: inputValue==="" ? ( <div></div> ) : (
               <IconButton
                 sx={{
                   "&:hover": {
@@ -125,6 +147,7 @@ export default function BrowserSearchHeader() {
           <SearchFilterItem
             text={searchFilterItem}
             isActive={currentActiveTabIndex === index}
+            style={{position:'relative'}}
             onClick={() => {
               if (currentActiveTabIndex === index) {
                 setcurrentActiveTabIndex(-1);
@@ -135,7 +158,7 @@ export default function BrowserSearchHeader() {
           >
             {currentActiveTabIndex === index && index === 0 ? (
               <Box
-                position="fixed"
+                position="absolute"
                 style={{
                   padding: 16,
                   backgroundColor: "#fff",
@@ -214,7 +237,7 @@ export default function BrowserSearchHeader() {
             )}
             {currentActiveTabIndex === index && index === 1 ? (
               <Box
-                position="fixed"
+                position="absolute"
                 style={{
                   padding: 16,
                   backgroundColor: "#fff",
@@ -268,7 +291,7 @@ export default function BrowserSearchHeader() {
             )}
             {currentActiveTabIndex === index && index === 2 ? (
               <Box
-                position="fixed"
+                position="absolute"
                 style={{
                   padding: 16,
                   backgroundColor: "#fff",
@@ -364,7 +387,7 @@ export default function BrowserSearchHeader() {
             )}
             {currentActiveTabIndex === index && index === 3 ? (
               <Box
-                position="fixed"
+                position="absolute"
                 style={{
                   padding: 16,
                   backgroundColor: "#fff",

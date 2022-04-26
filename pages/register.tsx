@@ -16,16 +16,64 @@ import useStyles from "../src/utils/styles";
 import { Controller, useForm } from "react-hook-form";
 import ErrorIcon from "@mui/icons-material/Error";
 import ReactPlayer from "react-player";
+import axios from "axios";
+import { apiUrl } from "../src/constants/apiUrl";
+import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
 
 export default function Register() {
   const classes = useStyles();
+  const router = useRouter();
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const submitHandler = () => {};
+  const submitHandler = async (data: {
+    email: string;
+    confirmEmail: string;
+    password: string;
+    confirmPassword: string;
+    phoneNumber: string;
+  }) => {
+    closeSnackbar();
+    const { email, confirmEmail, password, confirmPassword, phoneNumber } =
+      data;
+
+    if (email !== confirmEmail) {
+      enqueueSnackbar("emails don't match", { variant: "error" });
+      return;
+    }
+    if (password !== confirmPassword) {
+      enqueueSnackbar("passwords don't match", { variant: "error" });
+      return;
+    }
+    await axios
+      .post(apiUrl + "auth/register", {
+        email: email,
+        password: password,
+        name: "name",
+        phone: phoneNumber,
+      })
+      .then((response) => {
+        console.log("response; ", response.data);
+        reset({
+          email: "",
+          confirmEmail: "",
+          password: "",
+          confirmPassword: "",
+          phoneNumber: "",
+        });
+        router.push("/login");
+        enqueueSnackbar("Register Sucessfully!!!",{variant:'success'})
+      })
+      .catch((err) => {
+        console.log("err; ", err.response.data);
+      });
+  };
 
   return (
     <div>
@@ -128,7 +176,7 @@ export default function Register() {
                     )}
                   ></Controller>
                 </ListItem>
-                <ListItem style={{ display: "block"}}>
+                <ListItem style={{ display: "block" }}>
                   <Typography style={{ margin: "4px 0" }}>Password</Typography>
                   <Controller
                     name="password"
@@ -182,7 +230,7 @@ export default function Register() {
                           fullWidth
                           placeholder="Confirm your Password"
                           id="confirmPassword"
-                          inputProps={{ type: "confirmPassword" }}
+                          inputProps={{ type: "password" }}
                           error={Boolean(errors.confirmPassword)}
                           helperText={
                             errors.confirmPassword
@@ -286,7 +334,7 @@ export default function Register() {
                   attributes: {
                     disablepictureinpicture: "true",
                     controlsList: "nodownload",
-                    onContextMenu: (e) => e.preventDefault(),
+                    onContextMenu: (e: any) => e.preventDefault(),
                   },
                 },
               }}

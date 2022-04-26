@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import Head from "next/head"; 
+import Head from "next/head";
 import { Article, Home } from "../src/interface";
 import Layout from "../src/layouts/Layout";
 import FullControlledBanner from "../src/components/common/FullControlledBanner";
@@ -8,12 +8,19 @@ import ListHomeArticle from "../src/components/listHomeArticle/ListHomeArticle";
 import AddOnInformation from "../src/components/pages/realEstateForSale/addOnInformation";
 import ListHome from "../src/components/listHome/ListHome";
 import { useEffect } from "react";
-import axios from "axios";
-
-
+import { useHomes } from "../src/providers/homes-provider";
+import ListingForSaleHomes from "../src/components/pages/home/listingForSaleHomes/listing-for-sale-homes";
+import HomeSaleStatus from "../src/components/pages/home/home-sale-status"; 
+import LinkTextAssociation from "../src/components/pages/home/linkTextAssociation/link-text-association";
+import ImageFooter from "../src/components/pages/home/image-footer";
 
 const Home: NextPage = () => {
-  
+  const homesContext = useHomes();
+
+  useEffect(() => {
+    homesContext.loadHomes(); 
+  }, []);
+
   const homes: Home[] = [
     {
       name: "Single-Family-Home",
@@ -22,7 +29,7 @@ const Home: NextPage = () => {
       bed: 2,
       bath: 3,
       sqft: 5,
-      acreLot: 5,
+      acrelot: 5,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "Unique Home",
       seen: false,
@@ -34,7 +41,7 @@ const Home: NextPage = () => {
       bed: 3,
       bath: 3,
       sqft: 5,
-      acreLot: 5,
+      acrelot: 5,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "bbbb",
       seen: false,
@@ -46,7 +53,7 @@ const Home: NextPage = () => {
       bed: 4,
       bath: 3,
       sqft: 5,
-      acreLot: 5,
+      acrelot: 5,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "bbbb",
       seen: false,
@@ -58,7 +65,7 @@ const Home: NextPage = () => {
       bed: 2,
       bath: 2,
       sqft: 3,
-      acreLot: 0,
+      acrelot: 0,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "bbbb",
       seen: false,
@@ -91,7 +98,7 @@ const Home: NextPage = () => {
   // useEffect(()=>{
   //   axios.get('/home/')
   // },[])
-  
+
   return (
     <div>
       <Head>
@@ -101,16 +108,16 @@ const Home: NextPage = () => {
       </Head>
 
       <Layout>
-      <FullControlledBanner />
-      <ListHome homeData={homes} homeTitle="Homes around $252,000" />
-      <ListHome homeData={homes} homeTitle="Newest Listings" />
-      <ListHome homeData={homes} homeTitle="Upcoming Open Houses" />
-      <ListHome homeData={homes} homeTitle="Affordable Homes" />
-      <ListHome homeData={homes} homeTitle="Luxury Homes" />
-      <CoverDataStory />
-      <ListHomeArticle articleData={articles} />
-      <AddOnInformation />
-    </Layout>
+        <FullControlledBanner />
+        <ListHome homeData={homesContext.homes} homeTitle="Homes around $252,000" />
+        <ListingForSaleHomes homeData={homesContext.homes} homeTitle="Don't miss these homes" />
+        <HomeSaleStatus statusTittle={"What's happening in San Juan, PR"} />
+        <CoverDataStory />
+        <ListHomeArticle articleData={articles} />
+        <AddOnInformation />
+        <LinkTextAssociation />
+        <ImageFooter />
+      </Layout>
     </div>
   );
 };

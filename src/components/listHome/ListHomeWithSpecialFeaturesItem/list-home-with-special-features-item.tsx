@@ -76,11 +76,11 @@ export default function ListHomeWithSpecialFeaturesItem({
                 </Typography>
                 <Typography>sqft</Typography>
               </div>
-              {homeItem.acreLot !== 0 && (
+              {homeItem.acrelot !== 0 && (
                 <div style={{ display: "flex", marginRight: 10 }}>
                   <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
                     {" "}
-                    {homeItem.acreLot}{" "}
+                    {homeItem.acrelot}{" "}
                   </Typography>
                   <Typography noWrap>acre lot</Typography>
                 </div>

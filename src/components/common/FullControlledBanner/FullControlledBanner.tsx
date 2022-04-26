@@ -91,6 +91,7 @@ export default function FullControlledBanner() {
                     onClick={() => {
                       setCurrentActiveTabIndex(index);
                     }}
+                    route={"realestateforsale"}
                     onMouseEnter={() => {
                       setCurrentMouseEnterTabIndex(index);
                     }}

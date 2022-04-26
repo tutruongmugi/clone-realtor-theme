@@ -1,5 +1,5 @@
 import { constants } from "perf_hooks";
-import React from "react";
+import React, { useEffect } from "react";
 import ListHome from "../src/components/listHome/ListHome";
 import Layout from "../src/layouts/Layout";
 import type { NextPage } from "next";
@@ -8,6 +8,7 @@ import FullControlledBanner from "../src/components/common/FullControlledBanner"
 import CoverDataStory from "../src/components/pages/realEstateForSale/coverDataStory";
 import ListHomeArticle from "../src/components/listHomeArticle/ListHomeArticle";
 import AddOnInformation from "../src/components/pages/realEstateForSale/addOnInformation";
+import { useHomes } from "../src/providers/homes-provider";
 
 const Realestateforsale: NextPage = () => {
   const homes: Home[] = [
@@ -18,7 +19,7 @@ const Realestateforsale: NextPage = () => {
       bed: 2,
       bath: 3,
       sqft: 5,
-      acreLot: 5,
+      acrelot: 5,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "Unique Home",
       seen: false,
@@ -30,7 +31,7 @@ const Realestateforsale: NextPage = () => {
       bed: 3,
       bath: 3,
       sqft: 5,
-      acreLot: 5,
+      acrelot: 5,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "bbbb",
       seen: false,
@@ -42,7 +43,7 @@ const Realestateforsale: NextPage = () => {
       bed: 4,
       bath: 3,
       sqft: 5,
-      acreLot: 5,
+      acrelot: 5,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "bbbb",
       seen: false,
@@ -54,7 +55,7 @@ const Realestateforsale: NextPage = () => {
       bed: 2,
       bath: 2,
       sqft: 3,
-      acreLot: 0,
+      acrelot: 0,
       address: "6562 SW 129th Ln,Ocala, FL 34473",
       updatedAt: "bbbb",
       seen: false,
@@ -84,14 +85,19 @@ const Realestateforsale: NextPage = () => {
     },
   ];
 
+  const homesContext=useHomes();
+  useEffect(()=>{
+    homesContext.loadHomes()
+  },[])
+
   return (
     <Layout>
       <FullControlledBanner />
-      <ListHome homeData={homes} homeTitle="Homes around $252,000" />
-      <ListHome homeData={homes} homeTitle="Newest Listings" />
-      <ListHome homeData={homes} homeTitle="Upcoming Open Houses" />
-      <ListHome homeData={homes} homeTitle="Affordable Homes" />
-      <ListHome homeData={homes} homeTitle="Luxury Homes" />
+      <ListHome homeData={homesContext.homes} homeTitle="Homes around $252,000" />
+      <ListHome homeData={homesContext.homes} homeTitle="Newest Listings" />
+      <ListHome homeData={homesContext.homes} homeTitle="Upcoming Open Houses" />
+      <ListHome homeData={homesContext.homes} homeTitle="Affordable Homes" />
+      <ListHome homeData={homesContext.homes} homeTitle="Luxury Homes" />
       <CoverDataStory />
       <ListHomeArticle articleData={articles} />
       <AddOnInformation />

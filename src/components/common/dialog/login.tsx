@@ -30,9 +30,9 @@ export default function Login({
 
   const submitHandler = () => {};
 
-  const responseGoogle = (response) => {
-    console.log(response);
-  };
+  // const responseGoogle = (response) => {
+  //   console.log(response);
+  // };
 
   return (
     <Dialog open={open} onClose={handleClose}>

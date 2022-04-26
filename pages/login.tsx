@@ -10,25 +10,61 @@ import {
   Button,
 } from "@mui/material";
 import NextLink from "next/link";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import HeaderAuthentication from "../src/components/common/HeaderAuthentication/header-authentication";
 import useStyles from "../src/utils/styles";
 import { Controller, useForm } from "react-hook-form";
 import ErrorIcon from "@mui/icons-material/Error";
-import ReactPlayer from "react-player"; 
+import ReactPlayer from "react-player";
+import { apiUrl } from "../src/constants/apiUrl";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
+import { useAuth } from "../src/providers/authentication-provider";
 
 export default function Login() {
-  const classes = useStyles(); 
+  const classes = useStyles();
+  const router = useRouter();
 
+  const authContext = useAuth();
 
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm();
+  const { enqueueSnackbar } = useSnackbar();
 
-  
-  const submitHandler = () => {};
+  useEffect(() => {
+    if (authContext?.isAuthenticated) {
+      console.log("userinfo: ", authContext?.userInfo);
+      console.log("token: ", authContext?.accessToken);
+      reset({ email: "", password: "" });
+      router.push("/");
+      enqueueSnackbar("Login Sucessfully!!!", { variant: "success" });
+    }
+  }, [authContext?.isAuthenticated]);
+
+  const submitHandler = async (data: any) => {
+    const { email, password } = data;
+    // await axios
+    //   .post(apiUrl + "auth/login", {
+    //     email: email,
+    //     password: password,
+    //   })
+    //   .then((response) => {
+    //     console.log("response; ", response.data);
+    //     reset({ email: "", password: "" });
+
+    //     router.push("/");
+    //     enqueueSnackbar("Login Sucessfully!!!",{variant:'success'})
+    //   })
+    //   .catch((err) => {
+    //     console.log("err; ", err);
+    //   });
+    await authContext?.login(email, password);
+  };
 
   return (
     <div>
@@ -55,7 +91,7 @@ export default function Login() {
         </div>
         <Grid container spacing={0.5}>
           <Grid item md={6} xs={12}>
-            <form onSubmit={handleSubmit(submitHandler)} >
+            <form onSubmit={handleSubmit(submitHandler)}>
               <List>
                 <ListItem style={{ display: "block", margin: "10px 0" }}>
                   <Typography style={{ margin: "4px 0" }}>
@@ -86,7 +122,11 @@ export default function Login() {
                           }
                           {...field}
                         />
-                        {Boolean(errors.email) ? <ErrorIcon color="primary" sx={{ width: 50 }} /> : <div style={{width:60}}></div> }
+                        {Boolean(errors.email) ? (
+                          <ErrorIcon color="primary" sx={{ width: 50 }} />
+                        ) : (
+                          <div style={{ width: 60 }}></div>
+                        )}
                       </div>
                     )}
                   ></Controller>
@@ -130,8 +170,11 @@ export default function Login() {
                           }
                           {...field}
                         />
-                        {Boolean(errors.password) ? <ErrorIcon color="primary" sx={{ width: 50 }} /> : <div style={{width:60}}></div> }
-                        
+                        {Boolean(errors.password) ? (
+                          <ErrorIcon color="primary" sx={{ width: 50 }} />
+                        ) : (
+                          <div style={{ width: 60 }}></div>
+                        )}
                       </div>
                     )}
                   ></Controller>
@@ -161,31 +204,37 @@ export default function Login() {
                     }}
                     defaultChecked
                   />
-                  <Typography >
-                    Remember me
-                  </Typography>
+                  <Typography>Remember me</Typography>
                 </ListItem>
                 <ListItem style={{ justifyContent: "center" }}>
                   <Button
                     size="large"
                     variant="contained"
                     style={{ borderRadius: 4, backgroundColor: "#384cb8" }}
-                    type="submit" 
+                    type="submit"
                   >
                     Log in
                   </Button>
                 </ListItem>
-                <ListItem style={{ margin: "20px 0",justifyContent:'center' }}>
-                  <Typography className={classes.grayText} >
+                <ListItem
+                  style={{ margin: "20px 0", justifyContent: "center" }}
+                >
+                  <Typography className={classes.grayText}>
                     Don't have an account?{" "}
                     <NextLink href={`/register`} passHref>
                       <Link className={classes.linkText}>Sign up</Link>
                     </NextLink>
                   </Typography>
                 </ListItem>
-                <ListItem style={{ margin: "20px 0",justifyContent:'center',textAlign:'center' }}>
-                  <Typography  className={classes.grayText} >
-                  Trying to log in to your ReadyConnect/Opcity dashboard?{" "}
+                <ListItem
+                  style={{
+                    margin: "20px 0",
+                    justifyContent: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography className={classes.grayText}>
+                    Trying to log in to your ReadyConnect/Opcity dashboard?{" "}
                     <NextLink href={`/register`} passHref>
                       <Link className={classes.linkText}>Click here</Link>
                     </NextLink>
@@ -195,23 +244,21 @@ export default function Login() {
             </form>
           </Grid>
           <Grid item md={6} xs={12}>
-          <ReactPlayer
-                url={
-                  "https://player.vimeo.com/video/656297718?h=0ede5d041c"
-                }
-                controls
-                width="100%"
-                height="50%"
-                config={{
-                  file: {
-                    attributes: {
-                      disablepictureinpicture: "true",
-                      controlsList: "nodownload",
-                      onContextMenu: (e) => e.preventDefault(),
-                    },
+            <ReactPlayer
+              url={"https://player.vimeo.com/video/656297718?h=0ede5d041c"}
+              controls
+              width="100%"
+              height="50%"
+              config={{
+                file: {
+                  attributes: {
+                    disablepictureinpicture: "true",
+                    controlsList: "nodownload",
+                    onContextMenu: (e: any) => e.preventDefault(),
                   },
-                }}
-              />
+                },
+              }}
+            />
           </Grid>
         </Grid>
       </Container>
