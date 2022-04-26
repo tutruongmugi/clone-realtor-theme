@@ -53,7 +53,7 @@ export default function ListHomeItem({
                   justifyContent: "flex-end",
                   position: "absolute",
                   bottom: 16,
-                  right:16
+                  right: 16,
                 }}
               >
                 <Checkbox
@@ -77,45 +77,56 @@ export default function ListHomeItem({
               <Typography>{homeItem.updatedAt}</Typography>
             </Box>
 
-            <CardContent>
-              <Typography>{homeItem.name}</Typography>
+            <CardContent style={{ fontSize: 14 }}>
+              <div style={{ display: "flex",alignItems:'center' }}>
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    backgroundColor: "rgb(54, 179, 150)",
+                    borderRadius: 4,
+                    marginRight: 4,
+                  }}
+                ></div>
+                <Typography style={{ fontSize: 14 }} >{homeItem.name}</Typography>
+              </div>
               <Typography
-                style={{ fontWeight: "bold" }}
+                style={{ fontWeight: "bold",fontSize: 14 }}
               >{`$${homeItem.price}`}</Typography>
               <div style={{ display: "flex" }}>
                 <div style={{ display: "flex", marginRight: 10 }}>
-                  <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
+                  <Typography style={{ fontWeight: "bold", marginRight: 4 ,fontSize: 14 }}>
                     {" "}
                     {homeItem.bed}{" "}
                   </Typography>
-                  <Typography>bed</Typography>
+                  <Typography style={{fontSize: 14}}>bed</Typography>
                 </div>
                 <div style={{ display: "flex", marginRight: 10 }}>
-                  <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
+                  <Typography style={{ fontWeight: "bold", marginRight: 4,fontSize: 14 }}>
                     {" "}
                     {homeItem.bath}{" "}
-                  </Typography>
-                  <Typography>bath</Typography>
+                  </Typography  >
+                  <Typography style={{fontSize: 14}}>bath</Typography>
                 </div>
                 <div style={{ display: "flex", marginRight: 10 }}>
-                  <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
+                  <Typography style={{ fontWeight: "bold", marginRight: 4,fontSize: 14 }}>
                     {" "}
                     {homeItem.sqft}{" "}
                   </Typography>
-                  <Typography>sqft</Typography>
+                  <Typography style={{fontSize: 14}}>sqft</Typography>
                 </div>
-                {homeItem.acreLot !== 0 && (
+                {homeItem.acrelot !== 0 && (
                   <div style={{ display: "flex", marginRight: 10 }}>
-                    <Typography style={{ fontWeight: "bold", marginRight: 4 }}>
+                    <Typography style={{ fontWeight: "bold", marginRight: 4,fontSize: 14 }}>
                       {" "}
-                      {homeItem.acreLot}{" "}
+                      {homeItem.acrelot}{" "}
                     </Typography>
-                    <Typography noWrap>acre lot</Typography>
+                    <Typography style={{fontSize: 14}} noWrap>acre lot</Typography>
                   </div>
                 )}
               </div>
 
-              <Typography noWrap>{homeItem.address}</Typography>
+              <Typography style={{fontSize: 14}}  noWrap>{homeItem.address}</Typography>
             </CardContent>
           </CardActionArea>
         </NextLink>

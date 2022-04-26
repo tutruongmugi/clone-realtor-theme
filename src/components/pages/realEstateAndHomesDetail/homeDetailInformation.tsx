@@ -271,7 +271,7 @@ export default function HomeDetailInformation() {
             </ListItem>
           </List>
         </Grid>
-        <Grid md={4}>
+        <Grid item md={4}>
           <Typography>Map</Typography>
         </Grid>
       </Grid>

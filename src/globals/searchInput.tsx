@@ -32,7 +32,7 @@ export default function SearchInput({ style, ...props }: {} & BoxProps) {
             },
             "&.Mui-focused fieldset": {
               borderWidth: "0px !important",
-            },
+            }
           },
           endAdornment: (
             <IconButton

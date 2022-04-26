@@ -27,10 +27,10 @@ export default function BuyInstruction() {
   const [packing, setPacking] = useState("");
   const [sizeOfMove, setSizeOfMove] = useState("2.5");
 
-  const handleChangePacking = (e) => {
+  const handleChangePacking = (e : any ) => {
     setPacking(e.target.value);
   };
-  const handleChangeSizeOfMove = (e) => {
+  const handleChangeSizeOfMove = (e : any ) => {
     setSizeOfMove(e.target.value);
   };
 
@@ -88,7 +88,7 @@ export default function BuyInstruction() {
                     attributes: {
                       disablepictureinpicture: "true",
                       controlsList: "nodownload",
-                      onContextMenu: (e) => e.preventDefault(),
+                      onContextMenu: (e : any ) => e.preventDefault(),
                     },
                   },
                 }}

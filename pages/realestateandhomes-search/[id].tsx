@@ -17,8 +17,9 @@ import Facts from "../../src/components/pages/Browser/Facts/facts";
 import NearByLocation from "../../src/components/pages/Browser/NearByLocation/NearByLocation";
 import BuyInstruction from "../../src/components/pages/Browser/BuyInstruction/buyInstruction";
 import PRHomes from "../../src/components/pages/Browser/PRHomes/PRHomes";
-import Layout from "../../src/layouts/Layout";
 import BrowserSearchHeader from "../../src/components/pages/Browser/BrowserSearchHeader/browser-search-header";
+import FullControlledHeader from "../../src/components/common/FullControlledHeader";
+import FullControlledFooter from "../../src/components/common/FullControlledFooter";
 
 const homes: Home[] = [
   {
@@ -28,7 +29,7 @@ const homes: Home[] = [
     bed: 2,
     bath: 3,
     sqft: 5,
-    acreLot: 5,
+    acrelot: 5,
     address: "6562 SW 129th Ln,Ocala, FL 34473",
     updatedAt: "Unique Home",
     seen: false,
@@ -40,7 +41,7 @@ const homes: Home[] = [
     bed: 3,
     bath: 3,
     sqft: 5,
-    acreLot: 5,
+    acrelot: 5,
     address: "6562 SW 129th Ln,Ocala, FL 34473",
     updatedAt: "bbbb",
     seen: false,
@@ -52,7 +53,7 @@ const homes: Home[] = [
     bed: 4,
     bath: 3,
     sqft: 5,
-    acreLot: 5,
+    acrelot: 5,
     address: "6562 SW 129th Ln,Ocala, FL 34473",
     updatedAt: "bbbb",
     seen: false,
@@ -64,7 +65,7 @@ const homes: Home[] = [
     bed: 2,
     bath: 2,
     sqft: 3,
-    acreLot: 0,
+    acrelot: 0,
     address: "6562 SW 129th Ln,Ocala, FL 34473",
     updatedAt: "bbbb",
     seen: false,
@@ -76,7 +77,7 @@ const homes: Home[] = [
     bed: 2,
     bath: 2,
     sqft: 3,
-    acreLot: 0,
+    acrelot: 0,
     address: "6562 SW 129th Ln,Ocala, FL 34473",
     updatedAt: "bbbb",
     seen: false,
@@ -88,7 +89,7 @@ const homes: Home[] = [
     bed: 2,
     bath: 2,
     sqft: 3,
-    acreLot: 0,
+    acrelot: 0,
     address: "6562 SW 129th Ln,Ocala, FL 34473",
     updatedAt: "bbbb",
     seen: false,
@@ -99,10 +100,11 @@ export default function Search() {
   const [sortIndex, setSortIndex] = useState(0);
 
   return (
-    <Layout>
-      <div style={{ padding: 10 }}>
+    <div>
+      <FullControlledHeader widthContainer={"xl"} />
+      <Container maxWidth="xl">
         <BrowserSearchHeader />
-        <div style={{ marginTop: 60 }}>
+        <div >
           <Typography
             style={{ fontWeight: "bold" }}
             sx={{
@@ -154,11 +156,11 @@ export default function Search() {
               count={10}
               variant="outlined"
               shape="rounded"
-              size="large" 
+              size="large"
             />
           </Stack>
         </div>
-        <Typography style={{ marginTop: 20,textAlign:'center' }}>
+        <Typography style={{ marginTop: 20, textAlign: "center" }}>
           Found 296 matching properties
         </Typography>
 
@@ -171,7 +173,8 @@ export default function Search() {
           <BuyInstruction />
           <PRHomes />
         </Container>
-      </div>
-    </Layout>
+      </Container>
+      <FullControlledFooter />
+    </div>
   );
 }

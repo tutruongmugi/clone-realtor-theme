@@ -31,7 +31,7 @@ const listingStatusCheckBox = [
 export default function ListingStatus() {
   return (
     <Box
-      position="fixed"
+      position="absolute"
       style={{
         padding: 16,
         backgroundColor: "#fff",

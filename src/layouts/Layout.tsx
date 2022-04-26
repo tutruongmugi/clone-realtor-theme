@@ -6,7 +6,7 @@ import ButtonScrollToTop from "../components/common/ButtonScrollToTop";
 function Layout(props: { children: ReactNode }) {
   return (
     <div>
-      <FullControlledHeader />
+      <FullControlledHeader widthContainer={"lg"} />
       <div>{props.children}</div>
       <ButtonScrollToTop />
       <FullControlledFooter />
