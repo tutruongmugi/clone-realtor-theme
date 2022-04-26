@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import UserProfileMinimal from "../src/components/pages/home/UserProfileMinimal";
 import { User } from "../src/interface";
-import HeaderLayout from "../src/layouts/HeaderLayout";
+import Layout from "../src/layouts/Layout";
 
 const Home: NextPage = () => {
   const users: User[] = [
@@ -24,11 +24,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <HeaderLayout>
+      <Layout>
         {users.map((user) => (
           <UserProfileMinimal userData={user} key={user.name} />
         ))}
-      </HeaderLayout>
+      </Layout>
     </div>
   );
 };
